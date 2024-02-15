@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            font-size: 1.5em;
+            text-align: center;
+        }
+
+        th,
+        td {
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <select onchange="changeLang()">
+        <option value="select">選択してください</option>
+        <option value="jpn">日本語</option>
+        <option value="en">English</option>
+        <option value="all">全て表示</option>
+    </select>
+    <table id="languageTable">
+        <tr>
+            <th>日本</th>
+            <td>こんにちは</td>
+            <td>ありがとう</td>
+            <td>さようなら</td>
+        </tr>
+        <tr>
+            <th>English</th>
+            <td>Hello</td>
+            <td>Thank you</td>
+            <td>Good Bye</td>
+        </tr>
+    </table>
+    <script>
+        function changeLang() {
+            let select = document.querySelector('select');
+            let value = select.value;
+            let rows = document.querySelectorAll('#languageTable tr');
+
+            if (value === "jpn") {
+                rows.forEach(row => {
+                    if (row.querySelector('th').textContent === "English") {
+                        row.style.display = "none";
+                    } else {
+                        row.style.display = "table-row";
+                    }
+                });
+            } else if (value === "en") {
+                rows.forEach(row => {
+                    if (row.querySelector('th').textContent === "日本") {
+                        row.style.display = "none";
+                    } else {
+                        row.style.display = "table-row";
+                    }
+                });
+            } else if (value === "all") {
+                rows.forEach(row => {
+                    row.style.display = "table-row";
+                });
+            } else {
+                rows.forEach(row => {
+                    row.style.display = "none";
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>
